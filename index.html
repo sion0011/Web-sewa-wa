@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro landing - Premium Template</title>
+    <style>
+        /* Import Google Fonts untuk efek futuristik */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+        /* Reset dan base styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Ubah warna neon dan animasi hover di sini */
+            --neon-pink: #ff0080;
+            --neon-cyan: #00ffff;
+            --neon-purple: #8000ff;
+            --electric-blue: #0080ff;
+            --dark-bg: #0a0a0f;
+            --card-bg: rgba(20, 20, 30, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Tambahkan efek khusus di latar belakang di sini */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        .star:nth-child(odd) {
+            animation-delay: 1s;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Gradient background dengan efek Tokyo night */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(128, 0, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+                        linear-gradient(135deg, var(--dark-bg) 0%, #1a0a2e 50%, var(--dark-bg) 100%);
+            z-index: -2;
+        }
+
+        /* Container utama */
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Profile section styling */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideInDown 1s ease-out;
+        }
+
+        /* Ganti foto anime di sini */
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 30px var(--neon-pink), 
+                        inset 0 0 30px rgba(255, 0, 128, 0.2);
+            animation: profileGlow 3s ease-in-out infinite alternate;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        @keyframes profileGlow {
+            0% { 
+                box-shadow: 0 0 30px var(--neon-pink), 
+                           inset 0 0 30px rgba(255, 0, 128, 0.2);
+            }
+            100% { 
+                box-shadow: 0 0 50px var(--neon-cyan), 
+                           inset 0 0 50px rgba(0, 255, 255, 0.2);
+            }
+        }
+
+        /* Ubah nama dan bio sesuai karakter atau user */
+        .profile-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glitchText 4s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+        }
+
+        .profile-bio {
+            font-size: 1.1rem;
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Links section */
+        .links-section {
+            margin-bottom: 40px;
+        }
+
+        .link-button {
+            display: block;
+            width: 100%;
+            padding: 18px 24px;
+            margin-bottom: 16px;
+            background: var(--glass-bg);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .link-button:nth-child(1) { animation-delay: 0.2s; }
+        .link-button:nth-child(2) { animation-delay: 0.4s; }
+        .link-button:nth-child(3) { animation-delay: 0.6s; }
+        .link-button:nth-child(4) { animation-delay: 0.8s; }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .link-button:hover::before {
+            left: 100%;
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3),
+                        0 0 50px rgba(0, 255, 255, 0.2);
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .link-button:nth-child(even):hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3),
+                        0 0 50px rgba(255, 0, 128, 0.2);
+            background: rgba(255, 0, 128, 0.1);
+        }
+
+        /* Social media icons */
+        .social-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Tambah atau edit link ke sosial media */
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 2px solid var(--neon-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: fadeInScale 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .social-icon:nth-child(1) { animation-delay: 1s; }
+        .social-icon:nth-child(2) { animation-delay: 1.2s; }
+        .social-icon:nth-child(3) { animation-delay: 1.4s; }
+        .social-icon:nth-child(4) { animation-delay: 1.6s; }
+
+        .social-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 0 30px var(--neon-purple);
+            border-color: var(--electric-blue);
+        }
+
+        /* Music toggle button */
+        .music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 2px solid var(--neon-cyan);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .music-toggle.playing {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .profile-name {
+                font-size: 1.8rem;
+            }
+            
+            .link-button {
+                padding: 16px 20px;
+                font-size: 1rem;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background effects -->
+    <div class="background-effects">
+        <div class="stars" id="stars"></div>
+        <div class="floating-particles" id="particles"></div>
+    </div>
+
+    <!-- Music toggle button -->
+    <button class="music-toggle" id="musicToggle" title="Toggle Background Music">
+        🎵
+    </button>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Profile section -->
+        <div class="profile-section">
+            <!-- Ganti foto profile -->
+            <div class="profile-avatar">
+                <img src="https://img1.pixhost.to/images/9081/645921556_rozxvynxy.jpg" alt="Profile Avatar">
+            </div>
+            
+            <!-- Ubah nama dan bio sesuai karakter atau user -->
+            <h1 class="profile-name">YONN SEWA WA</h1>
+            <p class="profile-bio">"In this digital world, we are all connected by invisible threads of light ✨"</p>
+        </div>
+
+        <!-- Links section -->
+        <div class="links-section">
+            <a href="https://chat.whatsapp.com/EeXpFyIPF4i6VhmGBoiIkg?mode=ems_copy_t" class="link-button">🎮 GRUP WA YONN </a>
+            <a href="https://chat.whatsapp.com/EeXpFyIPF4i6VhmGBoiIkg" class="link-button">📱 TESTIMONI SEWA WA</a>
+            <a href="https://t.me/Yonzz777" class="link-button">🛍️ TELEGRAM</a>
+            <a href="https://wa.me/+6285381618070/?text=*KAK+YONN+MAU+SEWAIN+WA+NYA*" class="link-button">💬 NO WA YONN REAL</a>
+            <a href="#" class="link-button"> Art Portfolio</a>
+        </div>
+
+        <!-- Social media section -->
+        <div class="social-section">
+            <div class="social-icons">
+                <!-- Tambah atau edit link ke sosial media -->
+                <!-- Instagram -->
+                <a href="#" class="social-icon" title="Instagram">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                  </svg>
+                </a>
+
+                <!-- Twitter (X) -->
+                <a href="#" class="social-icon" title="Twitter">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter">
+                    <path d="M22 4.01c-.77.34-1.6.57-2.47.67a4.3 4.3 0 0 0 1.88-2.38c-.84.5-1.76.86-2.75 1.05a4.28 4.28 0 0 0-7.33 3.9A12.13 12.13 0 0 1 3 3.16a4.28 4.28 0 0 0 1.32 5.71A4.25 4.25 0 0 1 2.8 8v.05a4.28 4.28 0 0 0 3.43 4.2 4.3 4.3 0 0 1-1.92.07 4.29 4.29 0 0 0 4 2.97A8.59 8.59 0 0 1 2 18.58a12.07 12.07 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.39-.01-.58A8.72 8.72 0 0 0 24 4.59a8.56 8.56 0 0 1-2.5.69z" />
+                  </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a href=https://youtube.com/@ndra_tv?si=YJoWkF03HDVtmeys"" class="social-icon" title="YouTube">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-youtube">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.96-1.96C18.88 4 12 4 12 4s-6.88 0-8.58.46a2.78 2.78 0 0 0-1.96 1.96C1 8.12 1 12 1 12s0 3.88.46 5.58a2.78 2.78 0 0 0 1.96 1.96C5.12 20 12 20 12 20s6.88 0 8.58-.46a2.78 2.78 0 0 0 1.96-1.96C23 15.88 23 12 23 12s0-3.88-.46-5.58z" />
+                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                  </svg>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" class="social-icon" title="TikTok">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music-2">
+                    <path d="M9 18V5l12-2v13" />
+                    <circle cx="6" cy="18" r="3" />
+                    <circle cx="18" cy="16" r="3" />
+                  </svg>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Made with ❤️ for anime lovers • Code Craft Studio</p>
+    </div>
+
+    <script>
+        // Tambahkan efek khusus di latar belakang di sini
+        
+        // Generate random stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 50;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Generate floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Random colors for particles
+                const colors = ['var(--neon-pink)', 'var(--neon-cyan)', 'var(--neon-purple)', 'var(--electric-blue)'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = randomColor;
+                particle.style.boxShadow = `0 0 10px ${randomColor}`;
+                
+                particlesContainer.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 6000);
+            }, 300);
+        }
+
+        // Simple background music functionality
+        let isPlaying = false;
+        const musicToggle = document.getElementById('musicToggle');
+        
+        // Create audio context for ambient sound (using Web Audio API)
+        let audioContext;
+        let oscillator;
+        let gainNode;
+        
+        function createAmbientSound() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            oscillator = audioContext.createOscillator();
+            gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(220, audioContext.currentTime);
+            oscillator.type = 'sine';
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            
+            // Create a subtle ambient drone
+            const lfo = audioContext.createOscillator();
+            const lfoGain = audioContext.createGain();
+            lfo.connect(lfoGain);
+            lfoGain.connect(oscillator.frequency);
+            lfo.frequency.setValueAtTime(0.5, audioContext.currentTime);
+            lfoGain.gain.setValueAtTime(10, audioContext.currentTime);
+            
+            oscillator.start();
+            lfo.start();
+        }
+        
+        function stopAmbientSound() {
+            if (oscillator) {
+                oscillator.stop();
+                oscillator = null;
+            }
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+            }
+        }
+        
+        musicToggle.addEventListener('click', () => {
+            if (!isPlaying) {
+                try {
+                    createAmbientSound();
+                    musicToggle.classList.add('playing');
+                    musicToggle.innerHTML = '🔊';
+                    isPlaying = true;
+                } catch (error) {
+                    console.log('Audio not supported or blocked');
+                }
+            } else {
+                stopAmbientSound();
+                musicToggle.classList.remove('playing');
+                musicToggle.innerHTML = '🎵';
+                isPlaying = false;
+            }
+        });
+
+        // Add click effects to buttons
+        document.querySelectorAll('.link-button, .social-icon').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize effects when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createParticles();
+            
+            // Add entrance animation to container
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 1s ease-out';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Add mouse movement parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                star.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
